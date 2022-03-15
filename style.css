@@ -8,8 +8,8 @@ body {
   background-position: sticky;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rebeccapurple;
-  color: burlywood;
+  background-color: rgb(29, 1, 56);
+  color: rebeccapurple;
   z-index: 1000;
 }
 .column-container {
