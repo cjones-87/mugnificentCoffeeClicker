@@ -19,8 +19,11 @@
   <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> 
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> 
   </a>  
+  
+</div>
+<div align='center'>
   <a href="https://vercel.com/" target="_blank" rel="noreferrer"> 
-    <img align="center" img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/344/ffffff/external-glyph-shapes-tanah-basah-glyph-tanah-basah-69.png" width="35" height="35" alt='vercel'/> 
+    <img align="center" img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/344/ffffff/external-glyph-shapes-tanah-basah-glyph-tanah-basah-69.png" width="40" height="40" alt='vercel'/> 
   </a>
 </div>
 
