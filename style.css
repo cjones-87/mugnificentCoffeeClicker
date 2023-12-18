@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
-  background-image: url('');
 }
+
 body {
   margin: 0px;
   background-image: url('https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29mZmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60');
@@ -9,9 +9,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgb(29, 1, 56);
-  color: rebeccapurple;
+  color: indigo;
+  text-shadow: 1px 1px 1px #251810;
   z-index: 1000;
 }
+
+#pageContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .column-container {
   display: flex;
   width: 100%;
@@ -19,6 +26,7 @@ body {
   min-width: 650px;
   z-index: 1000;
 }
+
 .column {
   margin: 10px;
   margin-top: 0px;
@@ -34,6 +42,7 @@ body {
   height: calc(100vh - 40px);
   z-index: 1000;
 }
+
 .container.left {
   margin-top: 25px;
   margin-left: 5px;
@@ -50,8 +59,10 @@ body {
   background-color: transparent;
   z-index: 1000;
 }
+
 #big_coffee {
   user-select: none;
+  filter: drop-shadow(0 1px 1px indigo);
   font-size: 128px;
   cursor: pointer;
   z-index: 1000;
@@ -86,6 +97,7 @@ body {
   justify-content: space-between;
   z-index: 1000;
 }
+
 .producer-column {
   display: flex;
   flex-direction: column;
@@ -105,6 +117,7 @@ body {
 }
 
 #footer {
+  background-color: #d7ab65;
   bottom: 0;
   color: indigo;
   display: flex;
@@ -112,14 +125,14 @@ body {
   gap: 1rem;
   justify-content: center;
   padding: 1rem;
-  position: fixed;
+  position: sticky;
   width: 100%;
   z-index: 1;
 }
 
 #footerIcons {
   display: flex;
-  filter: drop-shadow(0 1px 1px whitesmoke);
+  filter: drop-shadow(0 1px 1px #251810);
   font-size: 2rem;
   justify-content: space-evenly;
   text-decoration: none;
@@ -130,7 +143,6 @@ body {
   font-size: 1.5rem;
   justify-content: center;
   text-align: center;
-  text-shadow: 1px 1px 1px whitesmoke;
 }
 
 #websiteCredit {
