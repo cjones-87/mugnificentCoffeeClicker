@@ -1,5 +1,5 @@
 function updateCoffeeView(coffeeQty) {
-  const coffeeCount = document.getElementById('coffee_counter');
+  const coffeeCount = document.getElementById('coffeeCounter');
   coffeeCount.innerText = coffeeQty;
 }
 
@@ -55,7 +55,7 @@ function deleteAllChildNodes(parent) {
 }
 
 function renderProducers(data) {
-  const producerContainer = document.getElementById('producer_container');
+  const producerContainer = document.getElementById('producerContainer');
 
   unlockProducers(data.producers, data.coffee);
 
@@ -119,10 +119,10 @@ function tick(data) {
 if (typeof process === 'undefined') {
   const data = window.data;
 
-  const bigCoffee = document.getElementById('big_coffee');
+  const bigCoffee = document.getElementById('bigCoffee');
   bigCoffee.addEventListener('click', () => clickCoffee(data));
 
-  const producerContainer = document.getElementById('producer_container');
+  const producerContainer = document.getElementById('producerContainer');
   producerContainer.addEventListener('click', (event) => {
     buyButtonClick(event, data);
   });
