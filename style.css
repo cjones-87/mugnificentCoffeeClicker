@@ -68,6 +68,12 @@ body {
   z-index: 1000;
 }
 
+button {
+  background-color: indigo;
+  color: #d7ab65;
+  text-shadow: 1px 1px 1px #251810;
+}
+
 .counterContainer {
   font-size: 30px;
   margin: 10px;
@@ -89,6 +95,7 @@ body {
 }
 
 .producer {
+  background-color: #d7ab65;
   margin-bottom: 5px;
   padding: 10px;
   border: 2px solid grey;
@@ -98,14 +105,14 @@ body {
   z-index: 1000;
 }
 
-.producer-column {
+.producerColumn {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   z-index: 1000;
 }
 
-.producer-title {
+.producerTitle {
   font-size: 20px;
   z-index: 1000;
 }
