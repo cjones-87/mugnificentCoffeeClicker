@@ -1,10 +1,24 @@
+const resetButton = document.getElementById('startOver');
+resetButton.addEventListener('click', () => {
+  localStorage.removeItem('coffeeCount');
+  localStorage.removeItem('cps');
+  location.reload();
+});
+
 function updateCoffeeView(coffeeQty) {
+  const savedQty = localStorage.getItem('coffeeCount');
   const coffeeCount = document.getElementById('coffeeCounter');
-  coffeeCount.innerText = coffeeQty;
+
+  coffeeCount.innerText = savedQty ? savedQty : coffeeQty;
 }
 
 function clickCoffee(data) {
+  const savedCoffee = localStorage.getItem('coffeeCount');
+
+  if (savedCoffee) data.coffee = savedCoffee;
   data.coffee++;
+
+  localStorage.setItem('coffeeCount', data.coffee);
   updateCoffeeView(data.coffee);
   renderProducers(data);
 }
@@ -23,7 +37,7 @@ function getUnlockedProducers(data) {
 
 function makeDisplayNameFromId(id) {
   return id
-    .split('_')
+    .split(/_/g)
     .map((word) => word[0].toUpperCase() + word.slice(1))
     .join(' ');
 }
@@ -75,6 +89,9 @@ function canAffordProducer(data, producerId) {
 }
 
 function updateCPSView(cps) {
+  // const savedCPS = localStorage.getItem('totalCPS', cps);
+  // savedCPS ? console.log('savedCPS', savedCPS) : console.log('cps', cps);
+  // localStorage.setItem('cps', cps);
   document.getElementById('cps').innerText = cps;
 }
 
@@ -111,6 +128,7 @@ function buyButtonClick(event, data) {
 }
 
 function tick(data) {
+  console.log('data in tick', data);
   data.coffee += data.totalCPS;
   updateCoffeeView(data.coffee);
   renderProducers(data);
