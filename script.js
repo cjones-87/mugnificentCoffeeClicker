@@ -120,6 +120,7 @@ function buyButtonClick(event, data) {
     if (!trueOrFalse) {
       window.alert('Not enough coffee!');
     } else {
+      console.log('data in button click', data);
       renderProducers(data);
       updateCoffeeView(data.coffee);
       updateCPSView(data.totalCPS);
@@ -128,6 +129,8 @@ function buyButtonClick(event, data) {
 }
 
 function tick(data) {
+  const savedCoffee = localStorage.getItem('savedCoffee');
+
   console.log('data in tick', data);
   data.coffee += data.totalCPS;
   updateCoffeeView(data.coffee);
