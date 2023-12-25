@@ -32,7 +32,12 @@ function unlockProducers(producers, coffeeCount) {
 }
 
 function getUnlockedProducers(data) {
-  return data.producers.filter((producer) => producer.unlocked);
+  const unlockedProducers = data.producers.filter(
+    (producer) => producer.unlocked
+  );
+
+  console.log('unlocked producers', unlockedProducers);
+  return unlockedProducers;
 }
 
 function makeDisplayNameFromId(id) {
@@ -128,10 +133,20 @@ function buyButtonClick(event, data) {
   }
 }
 
+const saveGameState = (data) =>
+  localStorage.setItem('gameState', JSON.stringify(data));
+
+const initializeGameState = () => {
+  const savedGameState = localStorage.getItem('gameState');
+  return savedGameState ? JSON.parse(savedGameState) : getDefaultGameState();
+};
+
+const getDefaultGameState = () => window.data;
+
 function tick(data) {
   const savedCoffee = localStorage.getItem('savedCoffee');
 
-  console.log('data in tick', data);
+  // console.log('data in tick', data);
   data.coffee += data.totalCPS;
   updateCoffeeView(data.coffee);
   renderProducers(data);
@@ -147,6 +162,10 @@ if (typeof process === 'undefined') {
   producerContainer.addEventListener('click', (event) => {
     buyButtonClick(event, data);
   });
+
+  renderProducers(data);
+  updateCoffeeView(data.coffee);
+  updateCPSView(data.totalCPS);
 
   setInterval(() => tick(data), 1000);
 } else if (process) {
