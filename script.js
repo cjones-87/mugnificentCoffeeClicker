@@ -1,23 +1,16 @@
 const resetButton = document.getElementById('startOver');
-resetButton.addEventListener('click', () => {
-  localStorage.removeItem('coffeeCount');
-  localStorage.removeItem('cps');
+resetButton.addEventListener("click", () => {
+  localStorage.removeItem("gameState");
   location.reload();
 });
 
 function updateCoffeeView(coffeeQty) {
   const coffeeCount = document.getElementById("coffeeCounter");
-
   coffeeCount.innerText = coffeeQty;
 }
 
 function clickCoffee(data) {
-  const savedCoffee = localStorage.getItem('coffeeCount');
-
-  if (savedCoffee) data.coffee = savedCoffee;
   data.coffee++;
-
-  localStorage.setItem('coffeeCount', data.coffee);
   updateCoffeeView(data.coffee);
   renderProducers(data);
 }
@@ -35,7 +28,6 @@ function getUnlockedProducers(data) {
     (producer) => producer.unlocked
   );
 
-  console.log('unlocked producers', unlockedProducers);
   return unlockedProducers;
 }
 
