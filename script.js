@@ -6,10 +6,9 @@ resetButton.addEventListener('click', () => {
 });
 
 function updateCoffeeView(coffeeQty) {
-  const savedQty = localStorage.getItem('coffeeCount');
-  const coffeeCount = document.getElementById('coffeeCounter');
+  const coffeeCount = document.getElementById("coffeeCounter");
 
-  coffeeCount.innerText = savedQty ? savedQty : coffeeQty;
+  coffeeCount.innerText = coffeeQty;
 }
 
 function clickCoffee(data) {
@@ -94,10 +93,7 @@ function canAffordProducer(data, producerId) {
 }
 
 function updateCPSView(cps) {
-  // const savedCPS = localStorage.getItem('totalCPS', cps);
-  // savedCPS ? console.log('savedCPS', savedCPS) : console.log('cps', cps);
-  // localStorage.setItem('cps', cps);
-  document.getElementById('cps').innerText = cps;
+  document.getElementById("cps").innerText = cps;
 }
 
 function updatePrice(oldPrice) {
@@ -111,6 +107,8 @@ function attemptToBuyProducer(data, producerId) {
     data.coffee -= producer.price;
     producer.price = updatePrice(producer.price);
     data.totalCPS += producer.cps;
+
+    saveGameState(data);
     return true;
   } else {
     return false;
@@ -118,14 +116,13 @@ function attemptToBuyProducer(data, producerId) {
 }
 
 function buyButtonClick(event, data) {
-  if (event.target.tagName === 'BUTTON') {
+  if (event.target.tagName === "BUTTON") {
     const producer = event.target.id.slice(4);
     const trueOrFalse = attemptToBuyProducer(data, producer);
 
     if (!trueOrFalse) {
-      window.alert('Not enough coffee!');
+      window.alert("Not enough coffee!");
     } else {
-      console.log('data in button click', data);
       renderProducers(data);
       updateCoffeeView(data.coffee);
       updateCPSView(data.totalCPS);
@@ -134,32 +131,31 @@ function buyButtonClick(event, data) {
 }
 
 const saveGameState = (data) =>
-  localStorage.setItem('gameState', JSON.stringify(data));
+  localStorage.setItem("gameState", JSON.stringify(data));
 
 const initializeGameState = () => {
-  const savedGameState = localStorage.getItem('gameState');
+  const savedGameState = localStorage.getItem("gameState");
   return savedGameState ? JSON.parse(savedGameState) : getDefaultGameState();
 };
 
 const getDefaultGameState = () => window.data;
 
 function tick(data) {
-  const savedCoffee = localStorage.getItem('savedCoffee');
-
-  // console.log('data in tick', data);
   data.coffee += data.totalCPS;
   updateCoffeeView(data.coffee);
   renderProducers(data);
+
+  saveGameState(data);
 }
 
-if (typeof process === 'undefined') {
-  const data = window.data;
+if (typeof process === "undefined") {
+  const data = initializeGameState();
 
-  const bigCoffee = document.getElementById('bigCoffee');
-  bigCoffee.addEventListener('click', () => clickCoffee(data));
+  const bigCoffee = document.getElementById("bigCoffee");
+  bigCoffee.addEventListener("click", () => clickCoffee(data));
 
-  const producerContainer = document.getElementById('producerContainer');
-  producerContainer.addEventListener('click', (event) => {
+  const producerContainer = document.getElementById("producerContainer");
+  producerContainer.addEventListener("click", (event) => {
     buyButtonClick(event, data);
   });
 
