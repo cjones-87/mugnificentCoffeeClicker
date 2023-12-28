@@ -11,6 +11,7 @@ const updateCoffeeView = (coffeeQty) => {
 
 const clickCoffee = (data) => {
   data.coffee++;
+  data.lifetimeEarnings++;
   updateCoffeeView(data.coffee);
   renderProducers(data);
 };
@@ -129,6 +130,7 @@ const getDefaultGameState = () => window.data;
 
 const tick = (data) => {
   data.coffee += data.totalCPS;
+  data.lifetimeEarnings += data.totalCPS;
   updateCoffeeView(data.coffee);
   renderProducers(data);
 
