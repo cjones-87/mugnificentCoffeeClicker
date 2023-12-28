@@ -9,10 +9,16 @@ const updateCoffeeView = (coffeeQty) => {
   coffeeCount.innerText = coffeeQty;
 };
 
+const updateLifetimeEarningsView = (totalEarnings) => {
+  const lifetimeEarnings = document.getElementById('lifetimeEarnings');
+  lifetimeEarnings.innerText = totalEarnings;
+};
+
 const clickCoffee = (data) => {
   data.coffee++;
   data.lifetimeEarnings++;
   updateCoffeeView(data.coffee);
+  updateLifetimeEarningsView(data.lifetimeEarnings);
   renderProducers(data);
 };
 
@@ -132,6 +138,7 @@ const tick = (data) => {
   data.coffee += data.totalCPS;
   data.lifetimeEarnings += data.totalCPS;
   updateCoffeeView(data.coffee);
+  updateLifetimeEarningsView(data.lifetimeEarnings);
   renderProducers(data);
 
   saveGameState(data);
@@ -150,12 +157,14 @@ if (typeof process === 'undefined') {
 
   renderProducers(data);
   updateCoffeeView(data.coffee);
+  updateLifetimeEarningsView(data.lifetimeEarnings);
   updateCPSView(data.totalCPS);
 
   setInterval(() => tick(data), 1000);
 } else if (process) {
   module.exports = {
     updateCoffeeView,
+    updateLifetimeEarningsView,
     clickCoffee,
     unlockProducers,
     getUnlockedProducers,
