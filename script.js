@@ -4,6 +4,13 @@ resetButton.addEventListener('click', () => {
   location.reload();
 });
 
+const clickCoffee = (data) => {
+  data.coffee++;
+  data.lifetimeEarnings++;
+  updateCoffeeView(data.coffee);
+  updateLifetimeEarningsView(data.lifetimeEarnings);
+  renderProducers(data);
+};
 const updateCoffeeView = (coffeeQty) => {
   const coffeeCount = document.getElementById('coffeeCounter');
   coffeeCount.innerText = coffeeQty;
@@ -12,14 +19,6 @@ const updateCoffeeView = (coffeeQty) => {
 const updateLifetimeEarningsView = (totalEarnings) => {
   const lifetimeEarnings = document.getElementById('lifetimeEarnings');
   lifetimeEarnings.innerText = totalEarnings;
-};
-
-const clickCoffee = (data) => {
-  data.coffee++;
-  data.lifetimeEarnings++;
-  updateCoffeeView(data.coffee);
-  updateLifetimeEarningsView(data.lifetimeEarnings);
-  renderProducers(data);
 };
 
 const unlockProducers = (producers, coffeeCount) => {
@@ -123,6 +122,9 @@ const buyButtonClick = (event, data) => {
     }
   }
 };
+
+const saveDisconnectTime = () =>
+  localStorage.setItem('disconnectTime', new Date().getTime());
 
 const saveGameState = (data) =>
   localStorage.setItem('gameState', JSON.stringify(data));
