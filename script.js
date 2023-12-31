@@ -149,6 +149,9 @@ const tick = (data) => {
 if (typeof process === 'undefined') {
   const data = initializeGameState();
 
+  window.addEventListener("beforeunload", () => saveDisconnectTime());
+
+
   const bigCoffee = document.getElementById('bigCoffee');
   bigCoffee.addEventListener('click', () => clickCoffee(data));
 
