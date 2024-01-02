@@ -172,6 +172,7 @@ if (typeof process === 'undefined') {
 
   window.addEventListener('beforeunload', () => saveDisconnectTime());
 
+
   const bigCoffee = document.getElementById('bigCoffee');
   bigCoffee.addEventListener('click', () => clickCoffee(data));
 
