@@ -132,7 +132,7 @@ const calculateOfflineProgress = (data) => {
   if (!isNaN(disconnectTime) && disconnectTime > 0) {
     const currentTime = new Date().getTime();
     const elapsedSeconds = Math.floor((currentTime - disconnectTime) / 1000);
-    const offlineEarnings = elapsedSeconds * data.totalCPS;
+    const offlineEarnings = elapsedSeconds * Math.ceiling(data.totalCPS * 0.5);
 
     data.coffee += offlineEarnings;
     data.lifetimeEarnings += offlineEarnings;
