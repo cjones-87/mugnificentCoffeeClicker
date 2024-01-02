@@ -126,6 +126,25 @@ const buyButtonClick = (event, data) => {
 const saveDisconnectTime = () =>
   localStorage.setItem('disconnectTime', new Date().getTime());
 
+const calculateOfflineProgress = (data) => {
+  const disconnectTime = +localStorage.getItem('disconnectTime');
+
+  if (!isNaN(disconnectTime) && disconnectTime > 0) {
+    const currentTime = new Date().getTime();
+    const elapsedSeconds = Math.floor((currentTime - disconnectTime) / 1000);
+    const offlineEarnings = elapsedSeconds * data.totalCPS;
+
+    data.coffee += offlineEarnings;
+    data.lifetimeEarnings += offlineEarnings;
+    updateCoffeeView(data.coffee);
+    updateLifetimeEarningsView(data.lifetimeEarnings);
+
+    window.alert(`Your lifetime earnings were: ${offlineEarnings}`);
+  }
+
+  localStorage.removeItem('disconnectTime');
+};
+
 const saveGameState = (data) =>
   localStorage.setItem('gameState', JSON.stringify(data));
 
@@ -137,6 +156,8 @@ const initializeGameState = () => {
 const getDefaultGameState = () => window.data;
 
 const tick = (data) => {
+  calculateOfflineProgress(data);
+
   data.coffee += data.totalCPS;
   data.lifetimeEarnings += data.totalCPS;
   updateCoffeeView(data.coffee);
@@ -148,6 +169,8 @@ const tick = (data) => {
 
 if (typeof process === 'undefined') {
   const data = initializeGameState();
+
+  window.addEventListener('beforeunload', () => saveDisconnectTime());
 
   const bigCoffee = document.getElementById('bigCoffee');
   bigCoffee.addEventListener('click', () => clickCoffee(data));
