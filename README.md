@@ -37,7 +37,7 @@
 
  <p>View <img src="https://cdn-icons-png.flaticon.com/128/608/608258.png" alt="down arrow" width="15" height="15"/> Here</p>
  <a href="https://www.seejonesengineer.com/projects/idleclicker" target="_blank" >
-         <img align="center" src="./IdleClicker.png" alt="Mugnificent Coffee Clicker" width="300" height="175"/>
+         <img align="center" src=".public/IdleClicker.png" alt="Mugnificent Coffee Clicker" width="300" height="175"/>
       </a>
 <div>
 <!-- Footer -->
